@@ -71,12 +71,12 @@ const Service = () => {
   if (step === 'selection') {
     return (
       <div className="page-container container animate-fade">
-        <header className="page-header" style={{ marginBottom: '100px', textAlign: 'center' }}>
+        <header className="page-header service-header">
           <h1>Nos <span className="text-gradient">Services</span></h1>
-          <p style={{ marginTop: '16px' }}>Choisissez votre catégorie d'appareil pour commencer votre demande de réparation.</p>
+          <p>Choisissez votre catégorie d'appareil pour commencer votre demande de réparation.</p>
         </header>
 
-        <div className="reassurance-bar" style={{ marginBottom: '100px' }}>
+        <div className="reassurance-bar">
           <div className="reassurance-item">
             <div className="reassurance-icon">🕒</div>
             <div className="reassurance-info">

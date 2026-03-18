@@ -10,10 +10,10 @@ const About = () => {
       </header>
 
       {/* Nos Valeurs Section */}
-      <section className="about-values" style={{ marginBottom: '120px' }}>
-        <div className="values-header" style={{ textAlign: 'center', marginBottom: '80px' }}>
+      <section className="about-values">
+        <div className="values-header">
           <span className="philosophy-label">Notre Philosophie</span>
-          <h2 className="values-title" style={{ fontSize: '3.5rem', marginTop: '16px' }}>Des valeurs qui nous <span className="text-gradient">définissent</span></h2>
+          <h2 className="values-title">Des valeurs qui nous <span className="text-gradient">définissent</span></h2>
         </div>
         
         <div className="values-grid">

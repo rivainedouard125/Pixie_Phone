@@ -110,11 +110,11 @@ const Home = () => {
       <section className="highlights container" style={{ paddingBottom: '120px' }}>
         <div className="cta-box glass">
           <div className="cta-content">
-            <h2 style={{ fontSize: '3rem', marginBottom: '16px' }}>Prêt à redonner vie à <span className="text-gradient">votre appareil ?</span></h2>
-            <p style={{ fontSize: '1.2rem', color: 'var(--color-text-dim)', marginBottom: '32px', maxWidth: '700px', margin: '0 auto 32px' }}>
+            <h2>Prêt à redonner vie à <span className="text-gradient">votre appareil ?</span></h2>
+            <p>
               Que ce soit pour un écran brisé, une batterie fatiguée ou un problème complexe, notre équipe est là pour vous aider avec précision et rapidité.
             </p>
-            <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
+            <div className="cta-btns">
               <button className="btn-primary" onClick={() => navigate('/services')}>Prendre Rendez-vous</button>
               <button className="btn-secondary" onClick={() => navigate('/about')}>En savoir plus</button>
             </div>
