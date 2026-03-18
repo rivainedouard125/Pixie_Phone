@@ -16,10 +16,18 @@ const Cart = () => {
       </header>
 
       {cart.length === 0 ? (
-        <div className="cta-box glass" style={{ textAlign: 'center', padding: '100px 40px' }}>
-          <h2>Votre panier est vide</h2>
-          <p>Il semble que vous n'ayez pas encore ajouté de pièces à votre panier.</p>
-          <button className="btn-primary" style={{ marginTop: '32px' }} onClick={() => navigate('/store')}>retourner à la boutique</button>
+        <div className="cta-box glass empty-cart-box">
+          <div className="cta-info">
+            <span className="location-label">Shopping</span>
+            <h2>Votre panier est vide</h2>
+            <p>Il semble que vous n'ayez pas encore ajouté de pièces à votre panier. Parcourez notre boutique pour trouver ce dont vous avez besoin.</p>
+            <div className="cta-buttons">
+              <button className="btn-primary" onClick={() => navigate('/store')}>Retourner à la boutique</button>
+            </div>
+          </div>
+          <div className="cta-image-placeholder glass" style={{ background: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10rem' }}>
+            🛒
+          </div>
         </div>
       ) : (
         <div className="cart-layout">
@@ -27,52 +35,60 @@ const Cart = () => {
             {cart.map(item => (
               <div key={item.id} className="glass cart-item">
                 <img src={item.image} alt={item.name} className="cart-item-img" />
-                <div style={{ flex: 1 }}>
-                  <h3 style={{ marginBottom: '8px' }}>{item.name}</h3>
-                  <p style={{ color: 'var(--color-text-dim)', fontSize: '0.9rem' }}>{item.category}</p>
+                <div className="cart-item-info">
+                  <h3>{item.name}</h3>
+                  <p>{item.category}</p>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                  <div className="quantity-controls" style={{ display: 'flex', alignItems: 'center', gap: '12px', background: 'rgba(255,255,255,0.05)', padding: '8px 16px', borderRadius: '100px' }}>
-                    <button onClick={() => updateQuantity(item.id, -1)} style={{ background: 'none', color: 'white', fontSize: '1.2rem' }}>-</button>
-                    <span style={{ fontWeight: '700' }}>{item.quantity}</span>
-                    <button onClick={() => updateQuantity(item.id, 1)} style={{ background: 'none', color: 'white', fontSize: '1.2rem' }}>+</button>
+                <div className="cart-item-actions">
+                  <div className="quantity-controls">
+                    <button onClick={() => updateQuantity(item.id, -1)} aria-label="Diminuer">-</button>
+                    <span>{item.quantity}</span>
+                    <button onClick={() => updateQuantity(item.id, 1)} aria-label="Augmenter">+</button>
                   </div>
-                  <span style={{ fontWeight: '800', fontSize: '1.2rem', minWidth: '80px', textAlign: 'right' }}>€{(item.price * item.quantity).toFixed(2)}</span>
-                  <button onClick={() => removeFromCart(item.id)} style={{ color: 'var(--color-primary)', background: 'none', fontSize: '1.5rem', marginLeft: '12px' }}>×</button>
+                  <span className="cart-item-price">€{(item.price * item.quantity).toFixed(2)}</span>
+                  <button 
+                    onClick={() => removeFromCart(item.id)} 
+                    className="cart-item-remove" 
+                    title="Supprimer l'article"
+                    aria-label="Supprimer"
+                  >
+                    ×
+                  </button>
                 </div>
               </div>
             ))}
           </div>
 
           <aside className="cart-summary glass">
-            <h2 style={{ marginBottom: '24px', fontSize: '1.5rem' }}>Résumé</h2>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px', color: 'var(--color-text-dim)' }}>
+            <h2 className="summary-title">Résumé</h2>
+            <div className="summary-row">
               <span>Sous-total</span>
-              <span style={{ color: 'white', fontWeight: '700' }}>€{cartTotal.toFixed(2)}</span>
+              <span className="summary-value">€{cartTotal.toFixed(2)}</span>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px', color: 'var(--color-text-dim)' }}>
+            <div className="summary-row">
               <span>Livraison</span>
-              <span style={{ color: 'var(--color-accent)', fontWeight: '700' }}>Gratuite</span>
+              <span className="summary-value delivery">Gratuite</span>
             </div>
-            <div style={{ height: '1px', background: 'var(--glass-border)', margin: '24px 0' }}></div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '32px' }}>
-              <span style={{ fontSize: '1.2rem', fontWeight: '700' }}>Total</span>
-              <span style={{ fontSize: '1.5rem', fontWeight: '900', color: 'var(--color-primary)' }}>€{cartTotal.toFixed(2)}</span>
+            <div className="summary-divider"></div>
+            <div className="summary-row total">
+              <span>Total</span>
+              <span className="summary-total-value">€{cartTotal.toFixed(2)}</span>
             </div>
-            <div className="terms-checkbox">
+            
+            <label className="terms-checkbox">
               <input 
                 type="checkbox" 
-                id="cart-terms" 
                 checked={accepted}
                 onChange={(e) => setAccepted(e.target.checked)}
               />
-              <label htmlFor="cart-terms">
-                J'accepte les <Link to="/terms" target="_blank" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>conditions générales de vente</Link>
-              </label>
-            </div>
+              <span>
+                J'accepte les <Link to="/terms" target="_blank">conditions générales de vente</Link>
+              </span>
+            </label>
+
             <button 
-              className="btn-primary lg" 
-              style={{ width: '100%', marginBottom: '16px', opacity: accepted ? 1 : 0.5 }} 
+              className={`btn-primary lg ${!accepted ? 'disabled' : ''}`} 
+              style={{ width: '100%', marginBottom: '16px' }} 
               disabled={!accepted}
               onClick={() => {
                 alert('Merci pour votre commande ! Cette fonctionnalité de paiement est une démonstration.');
@@ -80,9 +96,9 @@ const Cart = () => {
                 navigate('/');
               }}
             >
-              Commander
+              Finaliser la commande
             </button>
-            <button className="btn-secondary" style={{ width: '100%', padding: '12px' }} onClick={() => navigate('/store')}>
+            <button className="btn-secondary" style={{ width: '100%' }} onClick={() => navigate('/store')}>
               Continuer mes achats
             </button>
           </aside>

@@ -249,23 +249,25 @@
 
 .stage-label {
   position: absolute;
-  bottom: 40px;
-  padding: 14px 28px;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  top: 30px;
+  padding: 8px 16px;
+  background: rgba(13, 13, 16, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 100px;
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 3px;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
   color: white;
   z-index: 30;
   pointer-events: none;
+  transition: opacity 0.4s ease;
 }
 
-.stage-label.broken { left: 40px; }
-.stage-label.fixed { right: 40px; }
+.stage-label.broken { left: 30px; }
+.stage-label.fixed { right: 30px; }
 
 /* Slider Controls */
 .slider-controls {
@@ -332,35 +334,46 @@
 }
 
 /* CTA Section Refinement */
-.cta-box {
-  padding: 80px 40px;
+.cta-card-home {
+  padding: 140px 60px 60px;
   border-radius: 40px;
   text-align: center;
-  background: linear-gradient(135deg, rgba(185, 26, 36, 0.08) 0%, rgba(13, 13, 16, 1) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
   border: 1px solid var(--glass-border);
   position: relative;
   overflow: hidden;
-  margin-top: 80px;
+  margin-top: 100px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
 }
 
 .cta-content h2 {
-  font-size: 3.5rem;
+  font-size: 2.8rem;
   margin-bottom: 24px;
   letter-spacing: -0.03em;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.cta-content h2 .text-gradient {
+  display: block;
 }
 
 .cta-content p {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   color: var(--color-text-dim);
-  margin-bottom: 32px;
-  max-width: 700px;
+  margin-bottom: 48px;
+  max-width: 580px;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.7;
 }
 
 .cta-btns {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   justify-content: center;
 }
 
@@ -383,6 +396,9 @@
   .comparison-images {
     aspect-ratio: 4 / 3;
   }
+  .stage-label {
+    display: none;
+  }
   .features-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -400,22 +416,25 @@
   }
   .stage-label.fixed { right: 20px; }
   
-  .cta-content h2 {
-    font-size: 2.2rem;
-  }
-
   .cta-btns {
     flex-direction: column;
-    max-width: 300px;
+    max-width: 350px;
     margin: 0 auto;
+    gap: 16px;
   }
 
   .cta-btns .btn-primary, .cta-btns .btn-secondary {
     width: 100%;
+    padding: 16px;
   }
 
-  .comparison-slider-container {
-    border-radius: 24px;
+  .cta-card-home {
+    padding: 120px 24px 40px;
+    border-radius: 32px;
+  }
+
+  .cta-content h2 {
+    font-size: 2.2rem;
   }
 
   .handle-circle {

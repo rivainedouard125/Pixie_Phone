@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Store from './pages/Store';
 import Service from './pages/Service';
@@ -12,6 +13,7 @@ import Terms from './pages/Terms';
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <CartProvider>
         <div className="bg-ambient">
           <div className="blob blob-1"></div>

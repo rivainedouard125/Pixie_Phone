@@ -108,7 +108,7 @@ const Home = () => {
       </section>
 
       <section className="highlights container" style={{ paddingBottom: '120px' }}>
-        <div className="cta-box glass">
+        <div className="cta-card-home glass">
           <div className="cta-content">
             <h2>Prêt à redonner vie à <span className="text-gradient">votre appareil ?</span></h2>
             <p>
