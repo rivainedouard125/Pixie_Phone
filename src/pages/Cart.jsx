@@ -30,77 +30,102 @@ const Cart = () => {
           </div>
         </div>
       ) : (
-        <div className="cart-layout">
-          <div className="cart-items">
+        <div className="cart-unified-card glass">
+          <div className="cart-items-section">
+            <h3 className="items-list-title">Votre Sélection</h3>
             {cart.map(item => (
-              <div key={item.id} className="glass cart-item">
-                <img src={item.image} alt={item.name} className="cart-item-img" />
-                <div className="cart-item-info">
-                  <h3>{item.name}</h3>
-                  <p>{item.category}</p>
-                </div>
-                <div className="cart-item-actions">
-                  <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(item.id, -1)} aria-label="Diminuer">-</button>
-                    <span>{item.quantity}</span>
-                    <button onClick={() => updateQuantity(item.id, 1)} aria-label="Augmenter">+</button>
+              <div key={item.id} className="cart-item-receipt">
+                <div className="item-left">
+                  <div className="item-qty-badge">x{item.quantity}</div>
+                  <div className="item-info-compact">
+                    <h4>{item.name}</h4>
+                    <p>{item.category}</p>
+                    <div className="item-row-controls">
+                      <button className="qty-btn" onClick={() => updateQuantity(item.id, -1)}>-</button>
+                      <button className="qty-btn" onClick={() => updateQuantity(item.id, 1)}>+</button>
+                      <button className="remove-btn" onClick={() => removeFromCart(item.id)}>Supprimer</button>
+                    </div>
                   </div>
-                  <span className="cart-item-price">€{(item.price * item.quantity).toFixed(2)}</span>
-                  <button 
-                    onClick={() => removeFromCart(item.id)} 
-                    className="cart-item-remove" 
-                    title="Supprimer l'article"
-                    aria-label="Supprimer"
-                  >
-                    ×
-                  </button>
+                </div>
+                
+                <div className="item-right">
+                  <span className="item-price-receipt">€{(item.price * item.quantity).toFixed(2)}</span>
+                  <img src={item.image} alt={item.name} className="cart-item-img-mini" />
                 </div>
               </div>
             ))}
           </div>
 
-          <aside className="cart-summary glass">
-            <h2 className="summary-title">Résumé</h2>
+          <aside className="cart-summary-section">
+            <h2 className="summary-title">Résumé & Livraison</h2>
+            
+            <form className="checkout-form-grid">
+              <div className="form-group">
+                <label>Nom complet</label>
+                <input type="text" placeholder="Jean Dupont" required />
+              </div>
+              <div className="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="jean@example.com" required />
+              </div>
+              <div className="form-group-row">
+                <div className="form-group">
+                  <label>Téléphone</label>
+                  <input type="tel" placeholder="06 12 34 56 78" required />
+                </div>
+                <div className="form-group">
+                  <label>Ville</label>
+                  <input type="text" placeholder="Marseille" required />
+                </div>
+              </div>
+              <div className="form-group">
+                <label>Adresse de livraison</label>
+                <textarea placeholder="123 Rue de la Réparation..." rows="2" required></textarea>
+              </div>
+            </form>
+
+            <div className="summary-divider"></div>
+
             <div className="summary-row">
-              <span>Sous-total</span>
+              <span className="summary-label">Sous-total</span>
               <span className="summary-value">€{cartTotal.toFixed(2)}</span>
             </div>
             <div className="summary-row">
-              <span>Livraison</span>
-              <span className="summary-value delivery">Gratuite</span>
+              <span className="summary-label">Livraison</span>
+              <span className="summary-value" style={{ opacity: 0.6, fontSize: '0.8rem', fontStyle: 'italic' }}>Calculé au paiement</span>
             </div>
-            <div className="summary-divider"></div>
             <div className="summary-row total">
-              <span>Total</span>
+              <span className="total-label">Total TTC</span>
               <span className="summary-total-value">€{cartTotal.toFixed(2)}</span>
             </div>
             
-            <label className="terms-checkbox">
-              <input 
-                type="checkbox" 
-                checked={accepted}
-                onChange={(e) => setAccepted(e.target.checked)}
-              />
-              <span>
-                J'accepte les <Link to="/terms" target="_blank">conditions générales de vente</Link>
-              </span>
-            </label>
+            <div className="cart-checkout-actions">
+              <label className="terms-checkbox">
+                <input 
+                  type="checkbox" 
+                  checked={accepted}
+                  onChange={(e) => setAccepted(e.target.checked)}
+                />
+                <span>J'accepte les <Link to="/sales-terms" target="_blank">conditions générales de vente</Link></span>
+              </label>
 
-            <button 
-              className={`btn-primary lg ${!accepted ? 'disabled' : ''}`} 
-              style={{ width: '100%', marginBottom: '16px' }} 
-              disabled={!accepted}
-              onClick={() => {
-                alert('Merci pour votre commande ! Cette fonctionnalité de paiement est une démonstration.');
-                clearCart();
-                navigate('/');
-              }}
-            >
-              Finaliser la commande
-            </button>
-            <button className="btn-secondary" style={{ width: '100%' }} onClick={() => navigate('/store')}>
-              Continuer mes achats
-            </button>
+              <div className="checkout-btns-row">
+                <button 
+                  className={`btn-primary lg ${!accepted ? 'disabled' : ''}`} 
+                  disabled={!accepted}
+                  onClick={() => {
+                    alert('Merci pour votre commande ! Nous vous contacterons par email.');
+                    clearCart();
+                    navigate('/');
+                  }}
+                >
+                  Finaliser la commande
+                </button>
+                <button className="btn-secondary" onClick={() => navigate('/store')}>
+                  Retour
+                </button>
+              </div>
+            </div>
           </aside>
         </div>
       )}

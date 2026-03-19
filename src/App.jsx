@@ -9,6 +9,7 @@ import Service from './pages/Service';
 import About from './pages/About';
 import Cart from './pages/Cart';
 import Terms from './pages/Terms';
+import SalesTerms from './pages/SalesTerms';
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/sales-terms" element={<SalesTerms />} />
           </Routes>
           <Footer />
         </div>

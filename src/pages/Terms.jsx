@@ -5,15 +5,15 @@ const Terms = () => {
   return (
     <div className="page-container container animate-fade">
       <header className="page-header">
-        <h1>Conditions Générales de <span className="text-gradient">Vente</span></h1>
-        <p>Expertise Pixie Phone • Cadre de confiance et engagement de service</p>
+        <h1>Conditions Générales de <span className="text-gradient">Service</span></h1>
+        <p>Expertise Pixie Phone • Cadre de confiance pour nos prestations de réparation</p>
       </header>
 
       <div className="glass terms-container">
         <div className="terms-header">
           <div>
             <h2 className="text-gradient">Pixie Phone</h2>
-            <p style={{ opacity: 0.7 }}>Siret : 883 130 254 00013</p>
+            <p style={{ opacity: 0.7 }}>Services de réparation et diagnostic</p>
             <p style={{ opacity: 0.7 }}>Chemin des Pinchinades • 13170 Les Pennes Mirabeau</p>
           </div>
           <div className="terms-contact">
@@ -23,8 +23,8 @@ const Terms = () => {
         </div>
 
         <section className="terms-section">
-          <h2>1. Objet</h2>
-          <p>Les présentes conditions générales ont pour objet de définir les conditions et modalités de réparation de l'appareil du Client.</p>
+          <h2>1. Objet des Services</h2>
+          <p>Les présentes conditions définissent les modalités d'intervention pour la réparation d'appareils mobiles confiés par le Client à Pixie Phone. Elles s'appliquent exclusivement aux prestations de main-d'œuvre et de diagnostic.</p>
         </section>
 
         <section className="terms-section">

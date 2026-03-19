@@ -17,6 +17,8 @@ const Footer = () => {
             <li><Link to="/store">Boutique</Link></li>
             <li><Link to="/services">Services</Link></li>
             <li><Link to="/about">À propos</Link></li>
+            <li><Link to="/terms">CGV Réparation</Link></li>
+            <li><Link to="/sales-terms">CGV Boutique</Link></li>
           </ul>
         </div>
         <div className="footer-contact">

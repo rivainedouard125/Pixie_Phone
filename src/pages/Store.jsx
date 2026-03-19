@@ -8,6 +8,7 @@ const Store = () => {
   const [selectedPart, setSelectedPart] = useState('Tous');
   const [searchQuery, setSearchQuery] = useState('');
   const [addedId, setAddedId] = useState(null);
+  const [isFilterOverlayOpen, setIsFilterOverlayOpen] = useState(false);
   const { addToCart, cartCount } = useCart();
 
   const handleAddToCart = (product) => {
@@ -52,49 +53,120 @@ const Store = () => {
     return matchesSearch && matchesCategory && matchesBrand && matchesPart;
   });
 
+  const activeFiltersCount = (selectedBrand !== 'Tous' ? 1 : 0) + (selectedPart !== 'Tous' ? 1 : 0);
+
   return (
     <div className="page-container container animate-fade">
-      <header className="page-header">
-        <h1>Boutique <span className="text-gradient">Pixie</span></h1>
-        <p>Expertise et Qualité • {products.length} articles disponibles</p>
+      <header className="store-header-compact">
+        <div className="header-top">
+          <h1>Boutique <span className="text-gradient">Pixie</span></h1>
+        </div>
         
-        <div className="search-bar-container glass">
-          <span style={{ fontSize: '1.2rem' }}>🔍</span>
-          <input 
-            type="text" 
-            placeholder="Rechercher une pièce (ex: iPhone 13, batterie...)" 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
+        <div className="search-filter-row">
+          <div className="search-box glass">
+            <span>🔍</span>
+            <input 
+              type="text" 
+              placeholder="Que cherchez-vous ?" 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+          
+          <div className="filter-dropdown-container">
+            <button 
+              className={`btn-filter-actions glass ${activeFiltersCount > 0 ? 'active' : ''}`}
+              onClick={() => setIsFilterOverlayOpen(!isFilterOverlayOpen)}
+              title="Filtres Avancés"
+            >
+              <span style={{ fontSize: '1.1rem' }}>🎚️</span>
+              <span className="btn-label-mobile">FILTRE</span>
+              {activeFiltersCount > 0 && <span className="filter-count">{activeFiltersCount}</span>}
+            </button>
+
+            {/* Dropdown Overlay */}
+            {isFilterOverlayOpen && (
+              <>
+                <div className="dropdown-backdrop" onClick={() => setIsFilterOverlayOpen(false)}></div>
+                <div className="filter-dropdown-content glass animate-scale-in">
+                  <div className="dropdown-body">
+                    <div className="filter-group">
+                      <h4>MARQUE</h4>
+                      <div className="pill-grid">
+                        {brands.map(brand => (
+                          <button 
+                            key={brand} 
+                            className={`filter-pill ${brand === selectedBrand ? 'active' : ''}`}
+                            onClick={() => setSelectedBrand(brand)}
+                          >
+                            {brand}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="filter-group">
+                      <h4>TYPE DE PIÈCE</h4>
+                      <div className="pill-grid">
+                        {parts.map(part => (
+                          <button 
+                            key={part} 
+                            className={`filter-pill ${part === selectedPart ? 'active' : ''}`}
+                            onClick={() => setSelectedPart(part)}
+                          >
+                            {part}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="dropdown-footer">
+                    <button className="btn-primary small" style={{ width: '100%' }} onClick={() => setIsFilterOverlayOpen(false)}>
+                      Appliquer
+                    </button>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
         </div>
 
-        {cartCount > 0 && <div className="cart-badge">🛒 {cartCount} Article{cartCount > 1 ? 's' : ''} dans le Panier</div>}
+        <div className="category-scroller-main">
+          {categories.map(cat => (
+            <button 
+              key={cat} 
+              className={`cat-pill ${cat === selectedCategory ? 'active' : ''}`}
+              onClick={() => setSelectedCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
       </header>
 
-      <div className="store-layout">
-        <aside className="filter-sidebar glass">
-          <div className="filter-section">
-            <h3>CATÉGORIE</h3>
-            <div className="filter-scroller">
-              {categories.map(cat => (
-                <button 
-                  key={cat} 
-                  className={`filter-pill ${cat === selectedCategory ? 'active' : ''}`}
-                  onClick={() => setSelectedCategory(cat)}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </div>
+      <div className="store-results-info">
+        <span>{filteredProducts.length} articles trouvés</span>
+        { (activeFiltersCount > 0 || searchQuery) && (
+          <button className="text-reset-btn" onClick={() => {
+            setSelectedCategory('Tous');
+            setSelectedBrand('Tous');
+            setSelectedPart('Tous');
+            setSearchQuery('');
+          }}>Réinitialiser</button>
+        )}
+      </div>
 
-          <div className="filter-section" style={{ marginTop: '24px' }}>
+      <div className="store-content">
+        {/* Desktop Sidebar (hidden on mobile) */}
+        <aside className="filter-sidebar-desktop glass">
+          <div className="sidebar-section">
             <h3>MARQUE</h3>
-            <div className="filter-scroller">
+            <div className="sidebar-filter-list">
               {brands.map(brand => (
                 <button 
                   key={brand} 
-                  className={`filter-pill ${brand === selectedBrand ? 'active' : ''}`}
+                  className={`sidebar-link ${brand === selectedBrand ? 'active' : ''}`}
                   onClick={() => setSelectedBrand(brand)}
                 >
                   {brand}
@@ -102,14 +174,13 @@ const Store = () => {
               ))}
             </div>
           </div>
-
-          <div className="filter-section" style={{ marginTop: '24px' }}>
+          <div className="sidebar-section">
             <h3>TYPE DE PIÈCE</h3>
-            <div className="filter-scroller">
+            <div className="sidebar-filter-list">
               {parts.map(part => (
                 <button 
                   key={part} 
-                  className={`filter-pill ${part === selectedPart ? 'active' : ''}`}
+                  className={`sidebar-link ${part === selectedPart ? 'active' : ''}`}
                   onClick={() => setSelectedPart(part)}
                 >
                   {part}
@@ -117,19 +188,6 @@ const Store = () => {
               ))}
             </div>
           </div>
-
-          <button 
-            className="btn-secondary" 
-            style={{ width: '100%', marginTop: '32px', borderRadius: '100px' }}
-            onClick={() => {
-              setSelectedCategory('Tous');
-              setSelectedBrand('Tous');
-              setSelectedPart('Tous');
-              setSearchQuery('');
-            }}
-          >
-            Réinitialiser
-          </button>
         </aside>
 
         <section className="product-grid">
@@ -156,14 +214,15 @@ const Store = () => {
               </div>
             </div>
           )) : (
-            <div className="glass" style={{ gridColumn: '1 / -1', padding: '100px', textAlign: 'center', borderRadius: '32px' }}>
-              <span style={{ fontSize: '3rem', marginBottom: '20px', display: 'block' }}>🔍</span>
+            <div className="no-results glass">
+              <span>🔍</span>
               <h3>Aucune pièce trouvée</h3>
-              <p style={{ color: 'var(--color-text-dim)', marginTop: '8px' }}>Essayez d'ajuster vos filtres ou votre recherche.</p>
+              <p>Essayez d'ajuster vos filtres.</p>
             </div>
           )}
         </section>
       </div>
+
     </div>
   );
 };

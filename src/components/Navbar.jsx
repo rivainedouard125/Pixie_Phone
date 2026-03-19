@@ -27,8 +27,9 @@ const Navbar = () => {
         </ul>
 
         <div className="navbar-actions">
-          <Link to="/cart" className="cart-icon-btn" title="Mon Panier" onClick={closeMenu}>
-            🛒 {cartCount > 0 && <span className="cart-dot"></span>}
+          <Link to="/cart" className={`cart-pill-btn ${cartCount > 0 ? 'active' : ''}`} title="Mon Panier" onClick={closeMenu}>
+            <span className="cart-icon">🛒</span>
+            {cartCount > 0 && <span className="cart-badge-nav">{cartCount}</span>}
           </Link>
           <button className={`hamburger ${menuOpen ? 'active' : ''}`} onClick={toggleMenu} aria-label="Menu">
             <span></span>

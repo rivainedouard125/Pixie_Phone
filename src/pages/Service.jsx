@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Pages.css';
 
 const Service = () => {
@@ -87,26 +88,28 @@ const Service = () => {
           <p>Choisissez votre catégorie d'appareil pour commencer votre demande de réparation.</p>
         </header>
 
-        <div className="reassurance-bar">
-          <div className="reassurance-item glass">
-            <div className="reassurance-icon">🕒</div>
-            <div className="reassurance-info">
+        <div className="reassurance-bar-sleek glass">
+          <div className="reassurance-item-sleek">
+            <span className="reassurance-icon-mini">🕒</span>
+            <div className="reassurance-info-mini">
               <h3>Service Express</h3>
-              <p>Réparation en moins de 24h</p>
+              <p>Moins de 24h</p>
             </div>
           </div>
-          <div className="reassurance-item glass">
-            <div className="reassurance-icon">🛡️</div>
-            <div className="reassurance-info">
+          <div className="reassurance-divider-mini"></div>
+          <div className="reassurance-item-sleek">
+            <span className="reassurance-icon-mini">🛡️</span>
+            <div className="reassurance-info-mini">
               <h3>Garantie Pixie</h3>
-              <p>Pièces & main-d'œuvre garanties</p>
+              <p>Pièces & Main-d'œuvre</p>
             </div>
           </div>
-          <div className="reassurance-item glass">
-            <div className="reassurance-icon">⚡</div>
-            <div className="reassurance-info">
+          <div className="reassurance-divider-mini"></div>
+          <div className="reassurance-item-sleek">
+            <span className="reassurance-icon-mini">⚡</span>
+            <div className="reassurance-info-mini">
               <h3>Diagnostic Pro</h3>
-              <p>Estimation gratuite et précise</p>
+              <p>Estimation précise</p>
             </div>
           </div>
         </div>
@@ -223,7 +226,7 @@ const Service = () => {
                 <label className="terms-checkbox">
                   <input type="checkbox" name="acceptTerms" checked={formData.acceptTerms} onChange={handleChange} required />
                   <span>
-                    J'accepte les <a href="/terms" target="_blank" rel="noopener noreferrer">CGV</a> et je confirme avoir sauvegardé mes données.
+                    J'accepte les <Link to="/terms" target="_blank">CGV</Link> et je confirme avoir sauvegardé mes données.
                   </span>
                 </label>
                 <div className="form-nav-btns">
