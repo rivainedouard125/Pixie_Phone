@@ -21,6 +21,12 @@ const Store = () => {
         {/* Text Content Block */}
         <div className="coming-soon-text" style={{ position: 'relative', zIndex: 1, flex: '1 1 50%', padding: '4rem 3rem' }}>
 
+          <div style={{ display: 'inline-block', padding: '6px 16px', background: 'rgba(0, 195, 255, 0.15)', border: '1px solid rgba(0, 195, 255, 0.3)', borderRadius: '100px', marginBottom: '1.5rem' }}>
+            <span style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', color: '#00c3ff', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span className="pulse-dot" style={{ width: '8px', height: '8px', margin: 0 }}></span>
+              Bientôt Disponible
+            </span>
+          </div>
           
           <h1 style={{ fontSize: '2.8rem', marginBottom: '1rem', fontWeight: 700, letterSpacing: '-0.5px', lineHeight: '1.1' }}>
             La Boutique<br/>

@@ -21,7 +21,26 @@ const Navbar = () => {
         <ul className={`navbar-links ${menuOpen ? 'open' : ''}`}>
           <li><Link to="/services" className={location.pathname === '/services' ? 'active' : ''} onClick={closeMenu}>Services</Link></li>
           <li><Link to="/about" className={location.pathname === '/about' ? 'active' : ''} onClick={closeMenu}>À propos</Link></li>
-          <li><Link to="/store" className={location.pathname === '/store' ? 'active' : ''} onClick={closeMenu}>Boutique</Link></li>
+          <li>
+            <Link to="/store" className={location.pathname === '/store' ? 'active' : ''} onClick={closeMenu}>
+              Boutique 
+              <span style={{ 
+                fontSize: '0.65rem', 
+                padding: '2px 6px', 
+                background: 'rgba(0, 195, 255, 0.1)', 
+                border: '1px solid rgba(0, 195, 255, 0.3)', 
+                borderRadius: '6px', 
+                color: '#00c3ff', 
+                textTransform: 'uppercase', 
+                letterSpacing: '0.5px',
+                marginLeft: '6px',
+                verticalAlign: 'text-bottom',
+                fontWeight: 700
+              }}>
+                Bientôt
+              </span>
+            </Link>
+          </li>
         </ul>
 
         <div className="navbar-actions" style={{ gap: '15px' }}>
