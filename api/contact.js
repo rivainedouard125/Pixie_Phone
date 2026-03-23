@@ -22,15 +22,15 @@ export default async function handler(req, res) {
             
             <!-- Header -->
             <div style="background: rgba(255,255,255,0.02); padding: 40px 30px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05);">
-              <h1 style="color: #ff4b5c; margin: 0; font-size: 28px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;">PIXIE PHONE</h1>
-              <p style="margin: 12px 0 0; color: #9494a5; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Nouvelle Fiche de Réparation</p>
+              <img src="https://www.pixiephone.fr/assets/logo.png" alt="Pixie Phone" width="220" style="display: block; margin: 0 auto; max-width: 100%; height: auto;" />
+              <p style="margin: 20px 0 0; color: #9494a5; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Nouvelle Fiche de Réparation</p>
             </div>
             
             <!-- Content -->
             <div style="padding: 40px 30px;">
               <p style="color: #9494a5; font-size: 12px; text-align: right; margin: 0 0 30px 0;">Reçu le : ${new Date().toLocaleString('fr-FR')}</p>
               
-              <h2 style="color: #B91A24; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px; margin: 0 0 20px 0; text-transform: uppercase; letter-spacing: 1px;">👤 Informations Client</h2>
+              <h2 style="color: #B91A24; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px; margin: 0 0 20px 0; text-transform: uppercase; letter-spacing: 1px;">Informations Client</h2>
               <table style="width: 100%; border-collapse: collapse; margin-bottom: 40px;">
                 <tr><td style="padding: 10px 0; color: #9494a5; width: 35%;">Nom</td><td style="padding: 10px 0; font-weight: 600; color: #ffffff;">${nom}</td></tr>
                 <tr><td style="padding: 10px 0; color: #9494a5;">Téléphone</td><td style="padding: 10px 0; font-weight: 600; color: #ffffff;">${tel}</td></tr>
@@ -38,7 +38,7 @@ export default async function handler(req, res) {
                 <tr><td style="padding: 10px 0; color: #9494a5; vertical-align: top;">Adresse</td><td style="padding: 10px 0; font-weight: 600; color: #ffffff; line-height: 1.4;">${adresse}<br/>${cpVille}</td></tr>
               </table>
 
-              <h2 style="color: #B91A24; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px; margin: 0 0 20px 0; text-transform: uppercase; letter-spacing: 1px;">📱 Détails de l'Appareil</h2>
+              <h2 style="color: #B91A24; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px; margin: 0 0 20px 0; text-transform: uppercase; letter-spacing: 1px;">Détails de l'Appareil</h2>
               <table style="width: 100%; border-collapse: collapse; margin-bottom: 40px;">
                 <tr><td style="padding: 10px 0; color: #9494a5; width: 35%;">Catégorie</td><td style="padding: 10px 0; font-weight: 600; color: #ffffff;">${typeProduit}</td></tr>
                 <tr><td style="padding: 10px 0; color: #9494a5;">Type</td><td style="padding: 10px 0; font-weight: 600; color: #ffffff;">${produit}</td></tr>
@@ -47,7 +47,7 @@ export default async function handler(req, res) {
                 <tr><td style="padding: 10px 0; color: #9494a5;">État Visuel</td><td style="padding: 10px 0; font-weight: 600; color: #ffffff;">${etat || 'Non précisé'}</td></tr>
               </table>
               
-              <h2 style="color: #B91A24; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px; margin: 0 0 20px 0; text-transform: uppercase; letter-spacing: 1px;">🛠 Synthèse de la Panne</h2>
+              <h2 style="color: #B91A24; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px; margin: 0 0 20px 0; text-transform: uppercase; letter-spacing: 1px;">Synthèse de la Panne</h2>
               <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 24px; border-radius: 16px; margin-top: 15px;">
                 <p style="margin: 0; white-space: pre-wrap; line-height: 1.6; color: #f0f0f5; font-size: 15px;">${panne}</p>
               </div>
