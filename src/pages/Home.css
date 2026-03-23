@@ -68,6 +68,31 @@
   background: var(--glass-border);
 }
 
+.subtitle-pill {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.subtitle-dot {
+  color: var(--color-primary);
+  margin: 0 8px;
+  opacity: 0.8;
+}
+
+.hero-btn-main {
+  padding: 1.2rem 3rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 10px 30px rgba(0, 195, 255, 0.25);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.hero-btn-main:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 195, 255, 0.4);
+}
+
 .hero-image {
   flex: 0.8;
   display: flex;

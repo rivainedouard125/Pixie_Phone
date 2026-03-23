@@ -11,11 +11,15 @@ const Home = () => {
       <section className="hero">
         <div className="container hero-content">
           <div className="hero-text">
-            <h1 className="hero-title">Une <span className="text-gradient">Seconde Vie</span> <br />pour vos appareils.</h1>
-            <h2 className="hero-subtitle">Réparation toutes marques • Diagnostic et devis gratuit <br />Prêt de téléphone • Déplacement possible</h2>
-            <div className="hero-btns">
-              <button className="btn-primary" onClick={() => navigate('/services')}>Réserver une Réparation</button>
-              <button className="btn-secondary" onClick={() => navigate('/store')}>Voir la Boutique</button>
+            <h1 className="hero-title" style={{ textAlign: 'center' }}>Une <span className="text-gradient">Seconde Vie</span> <br />pour vos appareils.</h1>
+            <h2 className="hero-subtitle" style={{ textAlign: 'center', margin: '0 auto 40px auto', lineHeight: '1.8' }}>
+              <span className="subtitle-pill">Réparation toutes marques</span> <span className="subtitle-dot">•</span> <span className="subtitle-pill">Diagnostic et devis gratuit</span><br />
+              <span className="subtitle-pill">Prêt de téléphone</span> <span className="subtitle-dot">•</span> <span className="subtitle-pill">Déplacement possible</span>
+            </h2>
+            <div className="hero-btns" style={{ justifyContent: 'center' }}>
+              <button className="btn-primary hero-btn-main" onClick={() => navigate('/services')}>
+                Réserver une Réparation
+              </button>
             </div>
           </div>
           <div className="hero-image">

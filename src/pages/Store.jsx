@@ -1,228 +1,223 @@
-import React, { useState } from 'react';
-import { useCart } from '../context/CartContext';
+import React from 'react';
 import './Pages.css';
 
 const Store = () => {
-  const [selectedCategory, setSelectedCategory] = useState('Tous');
-  const [selectedBrand, setSelectedBrand] = useState('Tous');
-  const [selectedPart, setSelectedPart] = useState('Tous');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [addedId, setAddedId] = useState(null);
-  const [isFilterOverlayOpen, setIsFilterOverlayOpen] = useState(false);
-  const { addToCart, cartCount } = useCart();
-
-  const handleAddToCart = (product) => {
-    addToCart(product);
-    setAddedId(product.id);
-    setTimeout(() => setAddedId(null), 1500);
-  };
-
-  const categories = ['Tous', 'Téléphones', 'Ordinateurs', 'Tablettes', 'Accessoires'];
-  const brands = ['Tous', 'Apple', 'Samsung', 'Xiaomi', 'Huawei', 'Autre'];
-  const parts = ['Tous', 'Écran', 'Batterie', 'Caméra', 'Châssis', 'Outils', 'Chargeur'];
-
-  const products = [
-    // Apple
-    { id: 1, name: 'Écran iPhone 15 Pro OLED', price: 299.00, category: 'Téléphones', brand: 'Apple', type: 'Écran', image: '/images/products/iphone15-screen.png' },
-    { id: 2, name: 'Batterie Originale MacBook Pro 14"', price: 159.00, category: 'Ordinateurs', brand: 'Apple', type: 'Batterie', image: '/images/products/macbook-battery.png' },
-    { id: 3, name: 'Écran iPad Pro 12.9" M2', price: 449.00, category: 'Tablettes', brand: 'Apple', type: 'Écran', image: '/images/products/ipad-screen.png' },
-    { id: 7, name: 'Batterie iPhone 14 Pro', price: 89.00, category: 'Téléphones', brand: 'Apple', type: 'Batterie', image: '/images/products/phone-battery.png' },
-    { id: 9, name: 'Module Photo iPhone 14 Pro Max', price: 145.00, category: 'Téléphones', brand: 'Apple', type: 'Caméra', image: '/images/products/camera-module.png' },
-    { id: 13, name: 'Chargeur Apple 20W USB-C', price: 25.00, category: 'Accessoires', brand: 'Apple', type: 'Chargeur', image: '/images/products/charger.png' },
-    
-    // Samsung
-    { id: 8, name: 'Écran Dynamic AMOLED S23 Ultra', price: 329.00, category: 'Téléphones', brand: 'Samsung', type: 'Écran', image: '/images/products/samsung-screen.png' },
-    { id: 15, name: 'Batterie Galaxy S22 Plus', price: 69.00, category: 'Téléphones', brand: 'Samsung', type: 'Batterie', image: '/images/products/phone-battery.png' },
-    { id: 16, name: 'Connecteur Charge S23 Plus', price: 45.00, category: 'Téléphones', brand: 'Samsung', type: 'Châssis', image: '/images/products/charging-port.png' },
-    
-    // Xiaomi & Others
-    { id: 10, name: 'Écran LCD Xiaomi 13 Pro', price: 189.00, category: 'Téléphones', brand: 'Xiaomi', type: 'Écran', image: '/images/products/iphone15-screen.png' }, // Reusing premium OLED shot for quality
-    { id: 12, name: 'Batterie Haute Capacité Mi 11', price: 49.00, category: 'Téléphones', brand: 'Xiaomi', type: 'Batterie', image: '/images/products/phone-battery.png' },
-    
-    // Tools & Professional Accessories
-    { id: 6, name: 'Kit Maintenance Pro Pixie', price: 89.00, category: 'Accessoires', brand: 'Autre', type: 'Outils', image: '/images/products/toolkit.png' },
-    { id: 4, name: 'Station de soudage Precision', price: 185.00, category: 'Accessoires', brand: 'Autre', type: 'Outils', image: '/images/products/solder-station.png' },
-    { id: 18, name: 'Microscope Numérique Réparation', price: 215.00, category: 'Accessoires', brand: 'Autre', type: 'Outils', image: '/images/products/microscope.png' },
-  ];
-
-  const filteredProducts = products.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = selectedCategory === 'Tous' || product.category === selectedCategory;
-    const matchesBrand = selectedBrand === 'Tous' || product.brand === selectedBrand;
-    const matchesPart = selectedPart === 'Tous' || product.type === selectedPart;
-    return matchesSearch && matchesCategory && matchesBrand && matchesPart;
-  });
-
-  const activeFiltersCount = (selectedBrand !== 'Tous' ? 1 : 0) + (selectedPart !== 'Tous' ? 1 : 0);
-
   return (
-    <div className="page-container container animate-fade">
-      <header className="store-header-compact">
-        <div className="header-top">
-          <h1>Boutique <span className="text-gradient">Pixie</span></h1>
-        </div>
+    <div className="page-container container animate-fade" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '80vh', padding: '120px 1rem 4rem' }}>
+      <div className="glass coming-soon-card" style={{ 
+        display: 'flex', 
+        alignItems: 'stretch', 
+        borderRadius: '24px', 
+        maxWidth: '1000px', 
+        width: '100%', 
+        position: 'relative', 
+        overflow: 'hidden',
+        padding: 0
+      }}>
         
-        <div className="search-filter-row">
-          <div className="search-box glass">
-            <span>🔍</span>
-            <input 
-              type="text" 
-              placeholder="Que cherchez-vous ?" 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
+        {/* Subtle decorative glow */}
+        <div style={{ position: 'absolute', top: '-50%', left: '-20%', width: '150%', height: '150%', background: 'radial-gradient(ellipse at center, rgba(0, 195, 255, 0.08) 0%, transparent 60%)', zIndex: 0, pointerEvents: 'none' }}></div>
+        
+        {/* Text Content Block */}
+        <div className="coming-soon-text" style={{ position: 'relative', zIndex: 1, flex: '1 1 50%', padding: '4rem 3rem' }}>
+
+          
+          <h1 style={{ fontSize: '2.8rem', marginBottom: '1rem', fontWeight: 700, letterSpacing: '-0.5px', lineHeight: '1.1' }}>
+            La Boutique<br/>
+            <span className="text-gradient">Pixie Phone</span>
+          </h1>
+          
+          <p style={{ fontSize: '1.15rem', color: 'rgba(255, 255, 255, 0.7)', marginBottom: '2rem', lineHeight: '1.6' }}>
+            L'excellence des pièces pour tous les créateurs de magie. Nous finalisons un partenariat exclusif avec les meilleurs fournisseurs européens.
+          </p>
+          
+          <div style={{ padding: '1.5rem 0', borderTop: '1px solid rgba(255, 255, 255, 0.05)', borderBottom: '1px solid rgba(255, 255, 255, 0.05)', marginBottom: '2rem' }}>
+            <h4 style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '2px', color: 'rgba(255, 255, 255, 0.9)', marginBottom: '1rem' }}>Plus de 30 000 Reférences</h4>
+            <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+              <span className="part-tag">Écrans Premium</span>
+              <span className="part-tag">Batteries Originales</span>
+              <span className="part-tag">Micro-soudure</span>
+              <span className="part-tag">Outils Pro</span>
+            </div>
           </div>
           
-          <div className="filter-dropdown-container">
-            <button 
-              className={`btn-filter-actions glass ${activeFiltersCount > 0 ? 'active' : ''}`}
-              onClick={() => setIsFilterOverlayOpen(!isFilterOverlayOpen)}
-              title="Filtres Avancés"
-            >
-              <span style={{ fontSize: '1.1rem' }}>🎚️</span>
-              <span className="btn-label-mobile">FILTRE</span>
-              {activeFiltersCount > 0 && <span className="filter-count">{activeFiltersCount}</span>}
-            </button>
-
-            {/* Dropdown Overlay */}
-            {isFilterOverlayOpen && (
-              <>
-                <div className="dropdown-backdrop" onClick={() => setIsFilterOverlayOpen(false)}></div>
-                <div className="filter-dropdown-content glass animate-scale-in">
-                  <div className="dropdown-body">
-                    <div className="filter-group">
-                      <h4>MARQUE</h4>
-                      <div className="pill-grid">
-                        {brands.map(brand => (
-                          <button 
-                            key={brand} 
-                            className={`filter-pill ${brand === selectedBrand ? 'active' : ''}`}
-                            onClick={() => setSelectedBrand(brand)}
-                          >
-                            {brand}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="filter-group">
-                      <h4>TYPE DE PIÈCE</h4>
-                      <div className="pill-grid">
-                        {parts.map(part => (
-                          <button 
-                            key={part} 
-                            className={`filter-pill ${part === selectedPart ? 'active' : ''}`}
-                            onClick={() => setSelectedPart(part)}
-                          >
-                            {part}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="dropdown-footer">
-                    <button className="btn-primary small" style={{ width: '100%' }} onClick={() => setIsFilterOverlayOpen(false)}>
-                      Appliquer
-                    </button>
-                  </div>
-                </div>
-              </>
-            )}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <div className="pulse-dot"></div>
+            <p style={{ fontSize: '1rem', color: '#00c3ff', margin: 0, fontWeight: 500, letterSpacing: '0.5px' }}>
+              Ouverture imminente...
+            </p>
           </div>
         </div>
 
-        <div className="category-scroller-main">
-          {categories.map(cat => (
-            <button 
-              key={cat} 
-              className={`cat-pill ${cat === selectedCategory ? 'active' : ''}`}
-              onClick={() => setSelectedCategory(cat)}
-            >
-              {cat}
-            </button>
-          ))}
+        {/* Image / Graphic Block */}
+        <div className="coming-soon-visuals" style={{ 
+          position: 'relative', 
+          flex: '1 1 50%', 
+          background: 'radial-gradient(circle at right, rgba(255, 255, 255, 0.03) 0%, transparent 70%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden'
+        }}>
+          
+          {/* Decorative glowing orb in the back */}
+          <div style={{
+            position: 'absolute',
+            width: '200px',
+            height: '200px',
+            background: 'rgba(0, 195, 255, 0.1)',
+            filter: 'blur(80px)',
+            borderRadius: '50%',
+            zIndex: 0
+          }}></div>
+
+          <div className="parts-container">
+            {/* Tertiary background part */}
+            <img 
+              src="/images/products/camera-module.png" 
+              alt="Module Caméra" 
+              className="float-part part-back"
+            />
+            {/* Secondary part overlapping */}
+            <img 
+              src="/images/products/phone-battery.png" 
+              alt="Batterie" 
+              className="float-part part-mid"
+            />
+            {/* Main big floating part */}
+            <img 
+              src="/images/products/iphone15-screen.png" 
+              alt="Écran Premium" 
+              className="float-part part-front"
+            />
+          </div>
         </div>
-      </header>
-
-      <div className="store-results-info">
-        <span>{filteredProducts.length} articles trouvés</span>
-        { (activeFiltersCount > 0 || searchQuery) && (
-          <button className="text-reset-btn" onClick={() => {
-            setSelectedCategory('Tous');
-            setSelectedBrand('Tous');
-            setSelectedPart('Tous');
-            setSearchQuery('');
-          }}>Réinitialiser</button>
-        )}
       </div>
+      
+      <style>{`
+        .coming-soon-card {
+          flex-direction: row;
+        }
 
-      <div className="store-content">
-        {/* Desktop Sidebar (hidden on mobile) */}
-        <aside className="filter-sidebar-desktop glass">
-          <div className="sidebar-section">
-            <h3>MARQUE</h3>
-            <div className="sidebar-filter-list">
-              {brands.map(brand => (
-                <button 
-                  key={brand} 
-                  className={`sidebar-link ${brand === selectedBrand ? 'active' : ''}`}
-                  onClick={() => setSelectedBrand(brand)}
-                >
-                  {brand}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="sidebar-section">
-            <h3>TYPE DE PIÈCE</h3>
-            <div className="sidebar-filter-list">
-              {parts.map(part => (
-                <button 
-                  key={part} 
-                  className={`sidebar-link ${part === selectedPart ? 'active' : ''}`}
-                  onClick={() => setSelectedPart(part)}
-                >
-                  {part}
-                </button>
-              ))}
-            </div>
-          </div>
-        </aside>
+        .part-tag {
+          font-size: 0.85rem;
+          padding: 0.4rem 0.9rem;
+          border-radius: 20px;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          color: rgba(255, 255, 255, 0.8);
+          font-weight: 500;
+          backdrop-filter: blur(5px);
+          transition: background 0.3s ease;
+        }
 
-        <section className="product-grid">
-          {filteredProducts.length > 0 ? filteredProducts.map(product => (
-            <div key={product.id} className="product-card glass">
-              <div className="product-img-wrapper">
-                <img src={product.image} alt={product.name} className="product-img" loading="lazy" />
-              </div>
-              <div className="product-info">
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                  <span className="product-category">{product.brand}</span>
-                  <span style={{ fontSize: '0.8rem', opacity: 0.6 }}>{product.type}</span>
-                </div>
-                <h3>{product.name}</h3>
-                <div className="product-footer">
-                  <span className="product-price">€{product.price.toFixed(2)}</span>
-                  <button 
-                    className={`btn-primary small ${addedId === product.id ? 'added' : ''}`} 
-                    onClick={() => handleAddToCart(product)}
-                  >
-                    {addedId === product.id ? '✓ Ajouté' : 'Ajouter'}
-                  </button>
-                </div>
-              </div>
-            </div>
-          )) : (
-            <div className="no-results glass">
-              <span>🔍</span>
-              <h3>Aucune pièce trouvée</h3>
-              <p>Essayez d'ajuster vos filtres.</p>
-            </div>
-          )}
-        </section>
-      </div>
+        .part-tag:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
 
+        .pulse-dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: #00c3ff;
+          box-shadow: 0 0 10px #00c3ff;
+          animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+          0% { box-shadow: 0 0 0 0 rgba(0, 195, 255, 0.4); }
+          70% { box-shadow: 0 0 0 10px rgba(0, 195, 255, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(0, 195, 255, 0); }
+        }
+
+        .parts-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          min-height: 450px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .float-part {
+          position: absolute;
+          filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+          transition: transform 0.3s ease;
+        }
+
+        .part-front {
+          width: 65%;
+          right: 5%;
+          top: 15%;
+          transform: rotate(12deg);
+          z-index: 3;
+          animation: float-slow 6s ease-in-out infinite;
+        }
+
+        .part-mid {
+          width: 45%;
+          left: 10%;
+          bottom: 20%;
+          transform: rotate(-10deg);
+          z-index: 2;
+          opacity: 0.9;
+          animation: float-medium 7s ease-in-out infinite;
+          animation-delay: 1s;
+        }
+
+        .part-back {
+          width: 35%;
+          right: 45%;
+          top: 25%;
+          transform: rotate(-20deg);
+          z-index: 1;
+          opacity: 0.7;
+          animation: float-fast 5s ease-in-out infinite;
+          animation-delay: 0.5s;
+        }
+        
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0) rotate(12deg); }
+          50% { transform: translateY(-15px) rotate(14deg); }
+        }
+        @keyframes float-medium {
+          0%, 100% { transform: translateY(0) rotate(-10deg); }
+          50% { transform: translateY(-10px) rotate(-12deg); }
+        }
+        @keyframes float-fast {
+          0%, 100% { transform: translateY(0) rotate(-20deg); }
+          50% { transform: translateY(-8px) rotate(-18deg); }
+        }
+        
+        @media (max-width: 900px) {
+          .coming-soon-card {
+            flex-direction: column-reverse;
+          }
+          .coming-soon-visuals {
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+          }
+          .parts-container {
+            min-height: 350px;
+          }
+          .part-front { top: 10%; right: 15%; width: 55%; }
+          .part-mid { left: 15%; bottom: 10%; width: 40%; }
+          .part-back { top: 15%; right: 50%; width: 30%; }
+        }
+
+        @media (max-width: 600px) {
+          .coming-soon-text {
+            padding: 3rem 2rem !important;
+          }
+          .parts-container {
+            min-height: 280px;
+          }
+          .coming-soon-text h1 {
+            font-size: 2.2rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };
