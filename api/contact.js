@@ -13,8 +13,8 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${process.env.RESEND_API_KEY}`
       },
       body: JSON.stringify({
-        // During the testing phase, Resend ONLY lets you send from onboarding@resend.dev TO the signup email.
-        from: 'Pixie Phone System <onboarding@resend.dev>', 
+        // Now that the domain is verified, we can send from the official domain!
+        from: 'Pixie Phone <equipe@pixiephone.fr>', 
         to: ['kollana.team@gmail.com'], // Testing email!
         subject: `NOUVELLE FICHE DE RÉPARATION - ${nom.toUpperCase()}`,
         html: `
