@@ -16,7 +16,7 @@ export default async function handler(req, res) {
         // During the testing phase, Resend ONLY lets you send from onboarding@resend.dev TO the signup email.
         from: 'Pixie Phone System <onboarding@resend.dev>', 
         to: ['kollana.team@gmail.com'], // Testing email!
-        subject: `[NVL RÉPARATION] ${marque} ${modele} - ${nom}`,
+        subject: `NOUVELLE FICHE DE RÉPARATION - ${nom.toUpperCase()}`,
         html: `
           <div style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #1c1c24; color: #f0f0f5; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); padding: 0; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
             
