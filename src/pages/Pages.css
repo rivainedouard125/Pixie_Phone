@@ -486,6 +486,7 @@
 }
 
 .input-group input, 
+.input-group select,
 .input-group textarea {
   width: 100%;
   background: rgba(255, 255, 255, 0.03);
@@ -499,6 +500,7 @@
 }
 
 .input-group input:focus, 
+.input-group select:focus,
 .input-group textarea:focus {
   background: rgba(255, 255, 255, 0.06);
   border-color: var(--color-primary);

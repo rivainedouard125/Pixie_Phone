@@ -14,7 +14,7 @@ const Service = () => {
     produit: '',
     marque: '',
     modele: '',
-    imei: '',
+    etat: '',
     etat: '',
     panne: '',
     acceptTerms: false
@@ -221,31 +221,57 @@ const Service = () => {
               <h2 className="section-title">Détails de l'Appareil</h2>
               <div className="row">
                 <div className="input-group">
-                  <label>Appareil</label>
-                  <input type="text" name="produit" required onInvalid={handleInvalid} onInput={handleInput} value={formData.produit} onChange={handleChange} placeholder="ex: iPhone, MacBook..." />
+                  <label>Type d'Appareil</label>
+                  <select name="produit" required onInvalid={handleInvalid} onInput={handleInput} value={formData.produit} onChange={handleChange}>
+                    <option value="" disabled>Sélectionnez...</option>
+                    <option value="Smartphone">Smartphone</option>
+                    <option value="Tablette">Tablette</option>
+                    <option value="Ordinateur Portable">Ordinateur Portable</option>
+                    <option value="Ordinateur Fixe">Ordinateur Fixe</option>
+                    <option value="Console de Jeux">Console de Jeux</option>
+                    <option value="Montre Connectée">Montre Connectée</option>
+                    <option value="Autre">Autre</option>
+                  </select>
                 </div>
                 <div className="input-group">
                   <label>Marque</label>
-                  <input type="text" name="marque" required onInvalid={handleInvalid} onInput={handleInput} value={formData.marque} onChange={handleChange} placeholder="ex: Apple, Samsung..." />
+                  <select name="marque" required onInvalid={handleInvalid} onInput={handleInput} value={formData.marque} onChange={handleChange}>
+                    <option value="" disabled>Sélectionnez...</option>
+                    <option value="Apple">Apple</option>
+                    <option value="Samsung">Samsung</option>
+                    <option value="Xiaomi">Xiaomi</option>
+                    <option value="Huawei">Huawei</option>
+                    <option value="Google">Google (Pixel)</option>
+                    <option value="Sony">Sony</option>
+                    <option value="Nintendo">Nintendo</option>
+                    <option value="Microsoft">Microsoft</option>
+                    <option value="Asus / Dell / HP">Asus / Dell / HP / Lenovo</option>
+                    <option value="Autre">Autre</option>
+                  </select>
                 </div>
               </div>
               <div className="row">
                 <div className="input-group">
                   <label>Modèle précis</label>
-                  <input type="text" name="modele" required onInvalid={handleInvalid} onInput={handleInput} value={formData.modele} onChange={handleChange} placeholder="ex: 15 Pro, M2 Air..." />
+                  <input type="text" name="modele" required onInvalid={handleInvalid} onInput={handleInput} value={formData.modele} onChange={handleChange} placeholder="ex: iPhone 15 Pro, Galaxy S23 Ultra..." />
                 </div>
                 <div className="input-group">
-                  <label>N° Série / IMEI (Optionnel)</label>
-                  <input type="text" name="imei" value={formData.imei} onChange={handleChange} placeholder="Pour un meilleur suivi" />
+                  <label>État visuel de l'appareil</label>
+                  <select name="etat" required onInvalid={handleInvalid} onInput={handleInput} value={formData.etat} onChange={handleChange}>
+                    <option value="" disabled>Sélectionnez l'état...</option>
+                    <option value="Comme neuf, aucune rayure">Comme neuf, aucune rayure</option>
+                    <option value="Légères rayures d'usure">Légères rayures d'usure</option>
+                    <option value="Écran fissuré ou cassé">Écran fissuré ou cassé</option>
+                    <option value="Arrière fissuré ou cassé">Arrière fissuré ou cassé</option>
+                    <option value="Très abîmé (chute importante)">Très abîmé (chute importante)</option>
+                    <option value="Oxydé (tombé dans l'eau)">Oxydé (contact avec liquide)</option>
+                    <option value="Autre">Autre</option>
+                  </select>
                 </div>
               </div>
               <div className="input-group">
-                <label>État visuel</label>
-                <input type="text" name="etat" value={formData.etat} onChange={handleChange} placeholder="ex: Écran intact, micro-rayures..." />
-              </div>
-              <div className="input-group">
-                <label>Description de la panne</label>
-                <textarea name="panne" required onInvalid={handleInvalid} onInput={handleInput} value={formData.panne} onChange={handleChange} placeholder="Décrivez le problème rencontré..."></textarea>
+                <label>Description précise de la panne</label>
+                <textarea name="panne" required onInvalid={handleInvalid} onInput={handleInput} value={formData.panne} onChange={handleChange} placeholder="Décrivez en détail ce qui ne fonctionne plus (ex: L'écran reste noir mais le téléphone vibre, le port de charge est lâche, etc.)"></textarea>
               </div>
 
               <div className="form-footer" style={{ marginTop: '32px', alignItems: 'flex-start' }}>

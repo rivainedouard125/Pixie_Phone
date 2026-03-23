@@ -18,33 +18,47 @@ export default async function handler(req, res) {
         to: ['kollana.team@gmail.com'], // Testing email!
         subject: `[NVL RÉPARATION] ${marque} ${modele} - ${nom}`,
         html: `
-          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
-            <h1 style="color: #00c3ff;">Nouvelle Fiche de Réparation</h1>
-            <p><strong>Cree le:</strong> ${new Date().toLocaleString('fr-FR')}</p>
-            <hr />
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0c; color: #ffffff; border-radius: 16px; overflow: hidden; border: 1px solid #1a1a24; padding: 0;">
             
-            <h2>Informations Client</h2>
-            <p><strong>Nom:</strong> ${nom}</p>
-            <p><strong>Téléphone:</strong> ${tel}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Adresse:</strong> ${adresse}, ${cpVille}</p>
-            <hr />
-
-            <h2>Détails Appareil</h2>
-            <p><strong>Catégorie:</strong> ${typeProduit}</p>
-            <p><strong>Appareil:</strong> ${produit}</p>
-            <p><strong>Marque / Modèle:</strong> ${marque} ${modele}</p>
-            <p><strong>Série/IMEI:</strong> ${imei || 'Non fourni'}</p>
-            <p><strong>État Visuel:</strong> ${etat || 'Non précisé'}</p>
-            
-            <h2>Description de la Panne</h2>
-            <div style="background: #f4f4f4; padding: 15px; border-radius: 8px;">
-              <p style="margin: 0; white-space: pre-wrap;">${panne}</p>
+            <!-- Header -->
+            <div style="background: linear-gradient(135deg, #00c3ff 0%, #0055ff 100%); padding: 30px; text-align: center;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;">Pixie Phone</h1>
+              <p style="margin: 10px 0 0; color: rgba(255,255,255,0.9); font-size: 14px;">Nouvelle Fiche de Réparation</p>
             </div>
             
-            <p style="margin-top: 30px; font-size: 12px; color: #888;">
-              Cet e-mail a été envoyé automatiquement depuis le formulaire Pixie Phone.
-            </p>
+            <!-- Content -->
+            <div style="padding: 30px;">
+              <p style="color: #888; font-size: 12px; text-align: right; margin-top: 0;">Reçu le : ${new Date().toLocaleString('fr-FR')}</p>
+              
+              <h2 style="color: #00c3ff; font-size: 16px; border-bottom: 1px solid #1a1a24; padding-bottom: 10px; margin-top: 30px;">👤 Informations Client</h2>
+              <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                <tr><td style="padding: 8px 0; color: #888; width: 35%;">Nom</td><td style="padding: 8px 0; font-weight: 600;">${nom}</td></tr>
+                <tr><td style="padding: 8px 0; color: #888;">Téléphone</td><td style="padding: 8px 0; font-weight: 600;">${tel}</td></tr>
+                <tr><td style="padding: 8px 0; color: #888;">Email</td><td style="padding: 8px 0; font-weight: 600;">${email}</td></tr>
+                <tr><td style="padding: 8px 0; color: #888;">Adresse</td><td style="padding: 8px 0; font-weight: 600;">${adresse},<br/>${cpVille}</td></tr>
+              </table>
+
+              <h2 style="color: #00c3ff; font-size: 16px; border-bottom: 1px solid #1a1a24; padding-bottom: 10px; margin-top: 30px;">📱 Détails de l'Appareil</h2>
+              <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                <tr><td style="padding: 8px 0; color: #888; width: 35%;">Catégorie</td><td style="padding: 8px 0; font-weight: 600;">${typeProduit}</td></tr>
+                <tr><td style="padding: 8px 0; color: #888;">Appareil</td><td style="padding: 8px 0; font-weight: 600;">${produit}</td></tr>
+                <tr><td style="padding: 8px 0; color: #888;">Marque</td><td style="padding: 8px 0; font-weight: 600;">${marque}</td></tr>
+                <tr><td style="padding: 8px 0; color: #888;">Modèle</td><td style="padding: 8px 0; font-weight: 600;">${modele}</td></tr>
+                <tr><td style="padding: 8px 0; color: #888;">État Visuel</td><td style="padding: 8px 0; font-weight: 600;">${etat || 'Non précisé'}</td></tr>
+              </table>
+              
+              <h2 style="color: #00c3ff; font-size: 16px; border-bottom: 1px solid #1a1a24; padding-bottom: 10px; margin-top: 30px;">🛠 Description de la Panne</h2>
+              <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid #1a1a24; padding: 20px; border-radius: 12px; margin-top: 15px;">
+                <p style="margin: 0; white-space: pre-wrap; line-height: 1.6;">${panne}</p>
+              </div>
+            </div>
+            
+            <!-- Footer -->
+            <div style="background: #050508; padding: 20px; text-align: center; border-top: 1px solid #1a1a24;">
+              <p style="margin: 0; font-size: 12px; color: #666;">
+                Cet e-mail a été envoyé automatiquement depuis le système Pixie Phone.<br/>
+              </p>
+            </div>
           </div>
         `
       })
