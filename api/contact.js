@@ -34,7 +34,7 @@ export default async function handler(req, res) {
               <table style="width: 100%; border-collapse: collapse; margin-bottom: 40px;">
                 <tr><td style="padding: 10px 0; color: #9494a5; width: 35%;">Nom</td><td style="padding: 10px 0; font-weight: 600; color: #ffffff;">${nom}</td></tr>
                 <tr><td style="padding: 10px 0; color: #9494a5;">Téléphone</td><td style="padding: 10px 0; font-weight: 600; color: #ffffff;">${tel}</td></tr>
-                <tr><td style="padding: 10px 0; color: #9494a5;">Email</td><td style="padding: 10px 0; font-weight: 600;"><a href="mailto:${email}" style="color: #ff4b5c; text-decoration: none;">${email}</a></td></tr>
+                <tr><td style="padding: 10px 0; color: #9494a5;">Email</td><td style="padding: 10px 0; font-weight: 600; color: #ff4b5c;">${email}</td></tr>
                 <tr><td style="padding: 10px 0; color: #9494a5; vertical-align: top;">Adresse</td><td style="padding: 10px 0; font-weight: 600; color: #ffffff; line-height: 1.4;">${adresse}<br/>${cpVille}</td></tr>
               </table>
 
