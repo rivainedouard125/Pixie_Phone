@@ -4,20 +4,20 @@ import './Pages.css';
 const Store = () => {
   return (
     <div className="page-container container animate-fade" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '80vh', padding: '120px 1rem 4rem' }}>
-      <div className="glass coming-soon-card" style={{ 
-        display: 'flex', 
-        alignItems: 'stretch', 
-        borderRadius: '24px', 
-        maxWidth: '1000px', 
-        width: '100%', 
-        position: 'relative', 
+      <div className="glass coming-soon-card" style={{
+        display: 'flex',
+        alignItems: 'stretch',
+        borderRadius: '24px',
+        maxWidth: '1000px',
+        width: '100%',
+        position: 'relative',
         overflow: 'hidden',
         padding: 0
       }}>
-        
+
         {/* Subtle decorative glow */}
         <div style={{ position: 'absolute', top: '-50%', left: '-20%', width: '150%', height: '150%', background: 'radial-gradient(ellipse at center, rgba(0, 195, 255, 0.08) 0%, transparent 60%)', zIndex: 0, pointerEvents: 'none' }}></div>
-        
+
         {/* Text Content Block */}
         <div className="coming-soon-text" style={{ position: 'relative', zIndex: 1, flex: '1 1 50%', padding: '4rem 3rem' }}>
 
@@ -27,16 +27,16 @@ const Store = () => {
               Bientôt Disponible
             </span>
           </div>
-          
+
           <h1 style={{ fontSize: '2.8rem', marginBottom: '1rem', fontWeight: 700, letterSpacing: '-0.5px', lineHeight: '1.1' }}>
-            La Boutique<br/>
+            La Boutique<br />
             <span className="text-gradient">Pixie Phone</span>
           </h1>
-          
+
           <p style={{ fontSize: '1.15rem', color: 'rgba(255, 255, 255, 0.7)', marginBottom: '2rem', lineHeight: '1.6' }}>
             L'excellence des pièces pour tous les créateurs de magie. Nous finalisons un partenariat exclusif avec les meilleurs fournisseurs européens.
           </p>
-          
+
           <div style={{ padding: '1.5rem 0', borderTop: '1px solid rgba(255, 255, 255, 0.05)', borderBottom: '1px solid rgba(255, 255, 255, 0.05)', marginBottom: '2rem' }}>
             <h4 style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '2px', color: 'rgba(255, 255, 255, 0.9)', marginBottom: '1rem' }}>Plus de 30 000 Reférences</h4>
             <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
@@ -46,7 +46,7 @@ const Store = () => {
               <span className="part-tag">Outils Pro</span>
             </div>
           </div>
-          
+
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <div className="pulse-dot"></div>
             <p style={{ fontSize: '1rem', color: '#00c3ff', margin: 0, fontWeight: 500, letterSpacing: '0.5px' }}>
@@ -56,16 +56,16 @@ const Store = () => {
         </div>
 
         {/* Image / Graphic Block */}
-        <div className="coming-soon-visuals" style={{ 
-          position: 'relative', 
-          flex: '1 1 50%', 
+        <div className="coming-soon-visuals" style={{
+          position: 'relative',
+          flex: '1 1 50%',
           background: 'radial-gradient(circle at right, rgba(255, 255, 255, 0.03) 0%, transparent 70%)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           overflow: 'hidden'
         }}>
-          
+
           {/* Decorative glowing orb in the back */}
           <div style={{
             position: 'absolute',
@@ -79,27 +79,27 @@ const Store = () => {
 
           <div className="parts-container">
             {/* Tertiary background part */}
-            <img 
-              src="/images/products/camera-module.png" 
-              alt="Module Caméra" 
+            <img
+              src="/images/products/camera-module.png"
+              alt="Module Caméra"
               className="float-part part-back"
             />
             {/* Secondary part overlapping */}
-            <img 
-              src="/images/products/phone-battery.png" 
-              alt="Batterie" 
+            <img
+              src="/images/products/phone-battery.png"
+              alt="Batterie"
               className="float-part part-mid"
             />
             {/* Main big floating part */}
-            <img 
-              src="/images/products/iphone15-screen.png" 
-              alt="Écran Premium" 
+            <img
+              src="/images/products/iphone15-screen.png"
+              alt="Écran Premium"
               className="float-part part-front"
             />
           </div>
         </div>
       </div>
-      
+
       <style>{`
         .coming-soon-card {
           flex-direction: row;

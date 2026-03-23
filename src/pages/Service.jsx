@@ -53,15 +53,41 @@ const Service = () => {
     window.scrollTo(0, 0);
   };
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.acceptTerms) {
       alert("Veuillez accepter les conditions générales.");
       return;
     }
-    console.log('Form submitted:', formData);
-    setStep('success');
-    window.scrollTo(0, 0);
+    
+    setIsSubmitting(true);
+    
+    try {
+      // POST form data to our new Vercel serverless function
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok) {
+        setStep('success');
+        window.scrollTo(0, 0);
+      } else {
+        alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer. Erreur: " + result.error);
+      }
+    } catch (error) {
+      console.error("Send error:", error);
+      alert("Erreur de connexion serveur.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (step === 'success') {
@@ -231,7 +257,9 @@ const Service = () => {
                 </label>
                 <div className="form-nav-btns">
                   <button type="button" className="btn-secondary" onClick={prevStep}>Retour</button>
-                  <button type="submit" className="btn-primary">Envoyer la fiche</button>
+                  <button type="submit" className="btn-primary" disabled={isSubmitting}>
+                    {isSubmitting ? 'Envoi en cours...' : 'Envoyer la fiche'}
+                  </button>
                 </div>
                 <p className="form-note">TVA non applicable, art. 293B du CGI</p>
               </div>
